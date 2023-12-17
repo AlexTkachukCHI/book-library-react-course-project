@@ -1,0 +1,52 @@
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.back {
+    display: inline-block;
+    vertical-align: center;
+    position: absolute;
+    left: 4%;
+    top: 8%;
+}
+
+.title {
+    display: inline-block;
+    vertical-align: center;
+}
+
+h1 {
+    text-align: center;
+    color: #3498db;
+}
+
+.field {
+    margin-bottom: 20px;
+}
+
+.field label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+    color: #2c3e50;
+}
+
+.field span {
+    display: block;
+    padding: 10px;
+    background-color: #ecf0f1;
+    border-radius: 4px;
+}
+
+.field p {
+    margin: 0;
+    padding: 10px;
+    background-color: #ecf0f1;
+    border-radius: 4px;
+}
