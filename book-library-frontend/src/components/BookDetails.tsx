@@ -1,45 +1,56 @@
 import {Link, useParams} from "react-router-dom";
-import React from "react";
+import React, {useEffect, useState} from "react";
 import classes from "./BookDetails.module.css"
+import {Book} from "../models/booklist.models";
+import BookService from "../common/services/BookService";
 
 function BookDetails() {
-    const {id} = useParams();
+    const params = useParams();
+    const [book, setBook] = useState<Book>();
+
+    useEffect(() => {
+        BookService.get(String(params.id)).then((response: any) => {
+            setBook(response.data);
+        }).catch((e: Error) => {
+            console.log(e);
+        })
+    }, [])
 
     return (
         <div className={classes.container}>
             <div className={classes.back}>
-                <Link to=".." >Back</Link>
+                <Link to="..">Back</Link>
             </div>
             <h1 className={classes.title}>Book Details</h1>
 
             <div className={classes.field}>
                 <label htmlFor="book-id">ID:</label>
-                <span id="book-id">{id}</span>
+                <span id="book-id">{book?.id}</span>
             </div>
 
             <div className={classes.field}>
                 <label htmlFor="book-name">Name:</label>
-                <span id="book-name">The Lord of the Rings</span>
+                <span id="book-name">{book?.name}</span>
             </div>
 
             <div className={classes.field}>
                 <label htmlFor="book-author">Author:</label>
-                <span id="book-author">J.R.R. Tolkien</span>
+                <span id="book-author">{book?.author}</span>
             </div>
 
             <div className={classes.field}>
                 <label htmlFor="book-description">Description:</label>
-                <p id="book-description">In ancient times the Rings of Power were crafted by the Elven-smiths, and Sauron, the Dark Lord, forged the One Ring, filling it with his own power so that he could rule all others. But the One Ring was taken from him, and though he sought it throughout Middle-earth, it remained lost to him. After many ages it fell by chance into the hands of the hobbit Bilbo Baggins.</p>
+                <p id="book-description">{book?.description}</p>
             </div>
 
             <div className={classes.field}>
                 <label htmlFor="book-genre">Genre:</label>
-                <span id="book-genre">Fantasy</span>
+                <span id="book-genre">{book?.genre}</span>
             </div>
 
             <div className={classes.field}>
                 <label htmlFor="book-rating">Rating:</label>
-                <span id="book-rating">4.52</span>
+                <span id="book-rating">{book?.rating}</span>
             </div>
         </div>
     );
