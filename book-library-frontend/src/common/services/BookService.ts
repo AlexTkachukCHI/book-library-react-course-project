@@ -10,5 +10,5 @@ class BookService {
         return http.get<Book>(`/books/${id}`);
     }
 }
-
-export default new BookService();
+const bookService = new BookService();
+export default bookService;

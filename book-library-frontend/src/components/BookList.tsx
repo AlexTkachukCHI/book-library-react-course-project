@@ -1,8 +1,8 @@
-import classes from "./BookList.module.css"
 import {Link} from "react-router-dom";
 import {useEffect, useState} from "react";
 import {Book} from "../models/booklist.models";
 import BookService from "../common/services/BookService";
+import {Container, Grid} from "@mui/material";
 
 function BookList() {
     const [books, setBooks] = useState<Array<Book>>([]);
@@ -19,32 +19,51 @@ function BookList() {
 
     return (
         <>
-            <h1>Book Library</h1>
-            <table border={2} className={classes.table}>
-                <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Author</th>
-                    <th>Description</th>
-                    <th>Genre</th>
-                    <th>Rating</th>
-                </tr>
-                </thead>
-                <tbody>
+            <Container maxWidth={"lg"}>
+                <h1>Book Library</h1>
+                <Grid container alignItems="center" border={1}>
+                    <Grid xs={1} border={1}>
+                        ID
+                    </Grid>
+                    <Grid xs={3} border={1}>
+                        NAME
+                    </Grid>
+                    <Grid xs={3} border={1}>
+                        AUTHOR
+                    </Grid>
+                    <Grid xs={2} border={1}>
+                        GENRE
+                    </Grid>
+                    <Grid xs={1} border={1}>
+                        RATING
+                    </Grid>
+                    <Grid xs={2} border={1}>
+                        ACTIONS
+                    </Grid>
                     {books.map(book => (
-                        <tr key={book.id}>
-                            <td>{book.id}</td>
-                            <td>{book.name}</td>
-                            <td>{book.author}</td>
-                            <td className={classes.description}>{book.description}</td>
-                            <td>{book.genre}</td>
-                            <td>{book.rating}</td>
-                            <td><Link to={`/books/${book.id}`}><button>View</button></Link></td>
-                        </tr>
+                        <>
+                            <Grid xs={1} border={1} padding={3}>
+                                {book.id}
+                            </Grid>
+                            <Grid xs={3} border={1}  padding={3}>
+                                {book.name}
+                            </Grid>
+                            <Grid xs={3} border={1}  padding={3}>
+                                {book.author}
+                            </Grid>
+                            <Grid xs={2} border={1}  padding={3}>
+                                {book.genre}
+                            </Grid>
+                            <Grid xs={1} border={1}  padding={3}>
+                                {book.rating}
+                            </Grid>
+                            <Grid xs={2} border={1}  padding={3}>
+                                <Link to={`/books/${book.id}`}>View</Link>
+                            </Grid>
+                        </>
                     ))}
-                </tbody>
-            </table>
+                </Grid>
+            </Container>
         </>
     );
 }
