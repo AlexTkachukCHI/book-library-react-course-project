@@ -9,6 +9,10 @@ class BookService {
     get(id: string) {
         return http.get<Book>(`/books/${id}`);
     }
+
+    create(book: Book) {
+        return http.post("/books", book);
+    }
 }
 const bookService = new BookService();
 export default bookService;

@@ -41,6 +41,7 @@ public class SecurityConfiguration {
             "/swagger-ui/**",
             "/webjars/**",
             "/swagger-ui.html",
+            "/api/books",
             "/api/books/**"
         )
         .permitAll()

@@ -2,7 +2,7 @@ import {Link} from "react-router-dom";
 import {useEffect, useState} from "react";
 import {Book} from "../models/booklist.models";
 import BookService from "../common/services/BookService";
-import {Container, Grid} from "@mui/material";
+import {Button, Container, Grid} from "@mui/material";
 
 function BookList() {
     const [books, setBooks] = useState<Array<Book>>([]);
@@ -20,7 +20,21 @@ function BookList() {
     return (
         <>
             <Container maxWidth={"lg"}>
-                <h1>Book Library</h1>
+                <Grid container>
+                    <Grid xs={4}></Grid>
+                    <Grid xs={4}>
+                        <h1>Book Library</h1>
+                    </Grid>
+                    <Grid xs={4}>
+                        <Link to="/books/new">
+                            <Button variant="contained" sx={{
+                                marginTop: 3,
+                            }}
+                            >Add Book</Button>
+                        </Link>
+                    </Grid>
+                </Grid>
+
                 <Grid container alignItems="center" border={1}>
                     <Grid xs={1} border={1}>
                         ID
